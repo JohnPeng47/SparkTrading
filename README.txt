@@ -17,7 +17,7 @@ Setup Instructions
 
 Install dependencies:
 
-bashCopy# Install poetry if you haven't already
+# Install poetry if you haven't already
 pip install poetry
 
 # Install project dependencies
@@ -25,23 +25,23 @@ poetry install
 
 Start Kafka:
 
-bashCopy# Start Kafka services
+# Start Kafka services
 docker-compose up -d
 
 Setup Kafka topics:
 
-bashCopy# Create required topics
+# Create required topics
 python kafka_setup.py
 
 Verify installation:
 
-bashCopypython verify_install.py
+python verify_install.py
 
 Run the system:
 
-bashCopypython run.py
+python run.py
 
 Monitor events (in a separate terminal):
 
-bashCopypython kafka_monitor.py market_data  # View generated market data
+python kafka_monitor.py market_data  # View generated market data
 python kafka_monitor.py momentum_events  # View detected patterns
