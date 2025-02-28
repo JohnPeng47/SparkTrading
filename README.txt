@@ -1,19 +1,28 @@
 A learning project for Kafka/Spark, that runs a momentum based trading strategy against a synthetic data generator
 
-Core Components
+├── README.md
+├── data_gen/                           # Data Generation Package
+│   ├── __init__.py
+│   ├── generate.py                     # Main data generation interface
+│   └── strategies/                     # Data Generation Strategies
+│       ├── __init__.py
+│       ├── basic.py                    # Basic random walk generator
+│       └── momentum.py                 # Momentum pattern generator
+├── pattern_detect/                     # Pattern Detection Package
+│   ├── __init__.py
+│   ├── detect.py                       # Detection interface
+│   ├── processor.py                    # Base processor class
+│   └── strategies/                     # Detection Strategies
+│       ├── __init__.py
+│       ├── base.py                     # Base strategy interface
+│       ├── momentum_norm.py            # Python-based momentum detector
+│       └── momentum_spark.py           # Spark-based momentum detector
+├── docker-compose.yml                  # Kafka infrastructure setup
+├── kafka_monitor.py                    # Real-time Kafka topic monitor
+├── kafka_setup.py                      # Kafka topic management
+├── run.py                             # Main execution script
+└── verify_install.py                  # Installation verification
 
-data_gen/strategies/momentum.py - Generates synthetic market data with configurable momentum patterns
-pattern_detect/strategies/momentum_spark.py - Spark-based momentum pattern detector
-pattern_detect/strategies/momentum_norm.py - Python-based momentum pattern detector for comparison
-run.py - Main script to run the backtesting system
-
-Infrastructure
-
-kafka_setup.py - Manages Kafka topics (creation/deletion)
-kafka_monitor.py - Real-time monitoring of Kafka topics
-verify_install.py - Verifies Kafka and Spark installation
-
-Setup Instructions
 
 Install dependencies:
 
@@ -28,20 +37,9 @@ Start Kafka:
 # Start Kafka services
 docker-compose up -d
 
-Setup Kafka topics:
-
-# Create required topics
-python kafka_setup.py
-
-Verify installation:
-
-python verify_install.py
-
-Run the system:
-
+# Run the backtest
 python run.py
 
-Monitor events (in a separate terminal):
-
+# Monitor Kafka messages in real-time (in a separate terminal):
 python kafka_monitor.py market_data  # View generated market data
 python kafka_monitor.py momentum_events  # View detected patterns
