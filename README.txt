@@ -1,5 +1,7 @@
 A learning project for Kafka/Spark, that runs a momentum based trading strategy against a synthetic data generator
 
+Compares a Spark streaming processing to regular Python code 
+
 ├── README.md
 ├── data_gen/                           # Data Generation Package
 │   ├── __init__.py
